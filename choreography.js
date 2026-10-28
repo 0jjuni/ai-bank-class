@@ -1,6 +1,6 @@
 // A scene owns several scroll stops. Intermediate stops change its contents,
 // rather than navigating straight past the demonstration.
-const beatPresets=[0,0,2,1,0,0,1,1,2,0,2,0,1,1,2,1,1,1,2,1];
+const beatPresets=[0,0,2,1,2,0,1,1,2,0,2,0,1,1,2,1,1,1,2,1];
 const beatCounts=[...document.querySelectorAll('.slide')].map(s=>s.dataset.motion==='overview'?2:(beatPresets[+s.dataset.motion]||0));
 const starts=[];let totalStops=0;beatCounts.forEach(n=>{starts.push(totalStops);totalStops+=n+1});totalStops--;
 const mix=(a,b,t)=>a+(b-a)*t;
@@ -11,6 +11,7 @@ function choreograph(s,i,p){
   s.querySelectorAll('.usage-three article').forEach((el,j)=>{const focus=1-Math.min(1,Math.abs(p-j));paint(el,{y:reduced?0:(1-focus)*16,opacity:.36+.64*focus});});return;
  }
  i=Number(s.dataset.motion);
+ if(i===4)selectPayroll(["home","fixed","portfolio"][Math.min(2,Math.round(p))]);
  if(i===2){
   const a=clamp(p),b=clamp(p-1);
   s.querySelectorAll('.news-pool article').forEach((e,j)=>paint(e,{x:a*(400-j*25),y:a*(120-j*160),scale:1-a*.65,rotate:(1-a)*[-5,3,-2][j],opacity:1-a}));

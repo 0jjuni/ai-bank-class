@@ -54,7 +54,16 @@ document.getElementById('viewport').addEventListener('click',e=>{if(e.button!==0
 document.getElementById('play-film').onclick=()=>film.paused?film.play():film.pause();document.getElementById('restart-film').onclick=()=>{film.currentTime=0;film.play()};film.onplay=()=>document.getElementById('play-film').textContent='Ⅱ 일시 정지';film.onpause=()=>document.getElementById('play-film').textContent='▶ 영상 재생';
 const stamp=n=>`${String(Math.floor(n/60)).padStart(2,'0')}:${String(Math.floor(n%60)).padStart(2,'0')}`;film.ontimeupdate=()=>document.getElementById('film-time').textContent=stamp(film.currentTime)+' / '+stamp(film.duration||143.333);
 const captions={home:'한 달의 기록과 실수령액 확인',fixed:'매달 나가는 돈을 한눈에 확인',portfolio:'내 자산 구성을 한곳에서 확인'};
-document.querySelectorAll('[data-screen]').forEach(b=>b.onclick=()=>{document.getElementById('app-screen').src='assets/payroll-'+b.dataset.screen+'.png';document.getElementById('app-caption').textContent=captions[b.dataset.screen];document.getElementById('app-desktop-screen').src='assets/payroll-desktop-'+b.dataset.screen+'.png';document.querySelectorAll('[data-screen]').forEach(x=>x.classList.toggle('selected',x===b))});
+function selectPayroll(name){
+ const mobile=document.getElementById('app-screen'),desktop=document.getElementById('app-desktop-screen');
+ if(mobile.getAttribute('src')!=='assets/payroll-'+name+'.png'){
+  mobile.src='assets/payroll-'+name+'.png';desktop.src='assets/payroll-desktop-'+name+'.png';
+  if(!reduced)[mobile,desktop].forEach(el=>el.animate([{opacity:.25},{opacity:1}],{duration:300}));
+ }
+ document.getElementById('app-caption').textContent=captions[name];
+ document.querySelectorAll('[data-screen]').forEach(x=>{const selected=x.dataset.screen===name;x.classList.toggle('selected',selected);x.setAttribute('aria-pressed',String(selected))});
+}
+document.querySelectorAll('[data-screen]').forEach(b=>b.onclick=()=>{const scene=slides.findIndex(s=>s.dataset.motion==='4');move(starts[scene]+['home','fixed','portfolio'].indexOf(b.dataset.screen),false)});
 const motionButton=document.getElementById('motion-toggle');
 function motionLabel(){motionButton.textContent=reduced?'움직임 켜기':'움직임 줄이기'}
 motionLabel();motionButton.onclick=()=>{reduced=!reduced;document.documentElement.classList.toggle('motion-on',!reduced);motionLabel();render();enterScene(slides[idx])};
