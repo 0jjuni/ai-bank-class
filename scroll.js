@@ -1,4 +1,5 @@
-const slides=[...document.querySelectorAll('.slide')],notes=JSON.parse(document.getElementById('notes-data').textContent),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const slides=[...document.querySelectorAll('.slide')],notes=JSON.parse(document.getElementById('notes-data').textContent);
+let reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let idx=0,stage=0,unit=innerHeight*1.35,raf=0;
 const track=document.createElement('div');track.className='scroll-track';document.body.append(track);
 const jump=document.getElementById('jump'),film=document.getElementById('story');
@@ -45,5 +46,8 @@ document.getElementById('play-film').onclick=()=>film.paused?film.play():film.pa
 const stamp=n=>`${String(Math.floor(n/60)).padStart(2,'0')}:${String(Math.floor(n%60)).padStart(2,'0')}`;film.ontimeupdate=()=>document.getElementById('film-time').textContent=stamp(film.currentTime)+' / '+stamp(film.duration||143.333);
 const captions={home:'한 달의 기록과 실수령액 확인',fixed:'매달 나가는 돈을 한눈에 확인',portfolio:'내 자산 구성을 한곳에서 확인'};
 document.querySelectorAll('[data-screen]').forEach(b=>b.onclick=()=>{document.getElementById('app-screen').src='assets/payroll-'+b.dataset.screen+'.png';document.getElementById('app-caption').textContent=captions[b.dataset.screen];document.getElementById('app-desktop-screen').src='assets/payroll-desktop-'+b.dataset.screen+'.png';document.querySelectorAll('[data-screen]').forEach(x=>x.classList.toggle('selected',x===b))});
+const motionButton=document.getElementById('motion-toggle');
+function motionLabel(){motionButton.textContent=reduced?'움직임 켜기':'움직임 줄이기'}
+motionLabel();motionButton.onclick=()=>{reduced=!reduced;document.documentElement.classList.toggle('motion-on',!reduced);motionLabel();render();enterScene(slides[idx])};
 document.getElementById('replay-scene').onclick=()=>{go(idx,false);enterScene(slides[idx])};
 const initial=(parseInt(location.hash.slice(1))||1)-1;history.scrollRestoration='manual';fit();go(initial,false);
