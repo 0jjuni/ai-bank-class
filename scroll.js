@@ -1,5 +1,5 @@
 const slides=[...document.querySelectorAll('.slide')],notes=JSON.parse(document.getElementById('notes-data').textContent);
-let reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let reduced=false; // Explicitly requested animated presentation; the visible control can reduce motion.
 let idx=0,stage=0,unit=innerHeight*1.35,raf=0;
 const track=document.createElement('div');track.className='scroll-track';document.body.append(track);
 const jump=document.getElementById('jump'),film=document.getElementById('story');
@@ -16,22 +16,31 @@ function render(){
   const active=i===idx,near=i===owner||(i===owner+1&&transition>0),d=i===owner?-transition:1-transition;
   s.classList.toggle('active',active);s.inert=!active;s.setAttribute('aria-hidden',String(!active));s.style.visibility=near?'visible':'hidden';
   s.style.opacity=reduced?(active?1:0):near?clamp((1-Math.abs(d))*1.6):0;
-  s.style.transform=`translateY(${reduced?0:d*innerHeight*.8}px) scale(${scale})`;
+  s.style.transform=`translateY(${reduced?0:d*(innerHeight-56)}px) scale(${scale})`;
   if(near)choreograph(s,i,Math.max(0,Math.min(beatCounts[i],raw-starts[i])));
  });
- if(changed)enterScene(slides[idx]);
+ // Scroll position owns every transition; no second entrance animation mid-scroll.
  jump.value=idx;document.getElementById('counter').textContent=`${idx+1} / ${slides.length}`;
  document.getElementById('progress').style.width=raw/totalStops*100+'%';
  document.getElementById('prev').disabled=raw<.01;document.getElementById('next').disabled=raw>=totalStops-.01;
- document.getElementById('next').textContent=stage<beatCounts[idx]?'계속 →':'다음 →';
+ document.getElementById('next').textContent='다음 ↓';
  document.getElementById('note-title').textContent=`${idx+1}. ${notes[idx].title}`;document.getElementById('note-body').textContent=notes[idx].notes;
  if(location.hash!=='#'+(idx+1))history.replaceState(null,'','#'+(idx+1));
 }
-function move(stop,smooth=true){scrollTo({top:Math.max(0,Math.min(totalStops,stop))*unit,behavior:smooth&&!reduced?'smooth':'instant'});if(!smooth||reduced)render()}
+let scrollAnimation=0,scrollDestination=null;
+function cancelScroll(){cancelAnimationFrame(scrollAnimation);scrollAnimation=0;scrollDestination=null}
+function move(stop,smooth=true){
+ cancelScroll();const target=Math.max(0,Math.min(totalStops,stop))*unit,start=scrollY,distance=target-start;
+ if(!smooth||reduced||Math.abs(distance)<1){scrollTo({top:target,behavior:'instant'});render();return}
+ scrollDestination=target;const duration=Math.min(2600,1400+Math.abs(distance)/unit*260),begin=performance.now();
+ function frame(now){const t=Math.min(1,(now-begin)/duration),e=t*t*(3-2*t);scrollTo({top:start+distance*e,behavior:'instant'});render();if(t<1)scrollAnimation=requestAnimationFrame(frame);else{scrollAnimation=0;scrollDestination=null}}
+ scrollAnimation=requestAnimationFrame(frame);
+}
 function go(n,smooth=true){move(starts[Math.max(0,Math.min(slides.length-1,n))],smooth)}
 function show(n,end=false){n=Math.max(0,Math.min(slides.length-1,n));move(starts[n]+(end?beatCounts[n]:0),false)}
-function next(){move(Math.floor(scrollY/unit+.04)+1)}
-function prev(){move(Math.ceil(scrollY/unit-.04)-1)}
+function next(){if(scrollAnimation)return;go(idx+1)}
+function prev(){if(scrollAnimation)return;go(idx-1)}
+addEventListener('wheel',cancelScroll,{passive:true});addEventListener('touchstart',cancelScroll,{passive:true});
 addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;render()})},{passive:true});
 addEventListener('resize',()=>{const n=idx;fit();go(n,false)});
 addEventListener('hashchange',()=>go((parseInt(location.hash.slice(1))||1)-1,false));

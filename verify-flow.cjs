@@ -1,0 +1,8 @@
+const {chromium}=require('C:/Users/iyoun/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const {pathToFileURL}=require('url'),path=require('path'),assert=require('assert');
+(async()=>{const b=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});const p=await b.newPage({viewport:{width:1600,height:956},reducedMotion:'reduce'});const errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(process.env.LIVE_URL||pathToFileURL(path.join(__dirname,'index.html')).href);
+await p.evaluate(()=>show(3));await p.mouse.click(1200,120);let positions=[];for(let j=0;j<7;j++){await p.waitForTimeout(300);positions.push(await p.evaluate(()=>scrollY))}await p.waitForTimeout(700);assert.equal(await p.evaluate(()=>idx),4);assert(positions.slice(1).every((x,i)=>x>positions[i]),'scroll continuously progresses');
+await p.keyboard.press('ArrowLeft');await p.waitForTimeout(2800);assert.equal(await p.evaluate(()=>idx),3);
+await p.evaluate(()=>show(3));await p.mouse.click(1200,120);await p.waitForTimeout(500);await p.mouse.wheel(0,50);await p.waitForTimeout(100);assert.equal(await p.evaluate(()=>scrollAnimation),0,'wheel interrupts animation');
+await p.click('#motion-toggle');await p.evaluate(()=>show(2));await p.keyboard.press('ArrowRight');assert.equal(await p.evaluate(()=>idx),3,'reduced-motion instant option');
+for(let i=0;i<20;i++){await p.evaluate(i=>show(i,true),i);assert.equal(await p.evaluate(()=>idx),i)}assert.deepEqual(errors,[]);console.log({positions,continuousClick:'passed',previous:'passed',interrupt:'passed',scenes:20,errors});await b.close()})().catch(e=>{console.error(e);process.exit(1)});

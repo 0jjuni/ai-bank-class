@@ -1,11 +1,13 @@
 // A scene owns several scroll stops. Intermediate stops change its contents,
 // rather than navigating straight past the demonstration.
-const beatCounts=[0,0,2,1,0,0,1,1,2,0,2,0,1,1,2,1,1,1,2,1];
+const beatPresets=[0,0,2,1,0,0,1,1,2,0,2,0,1,1,2,1,1,1,2,1];
+const beatCounts=[...document.querySelectorAll('.slide')].map(s=>beatPresets[+s.dataset.motion]||0);
 const starts=[];let totalStops=0;beatCounts.forEach(n=>{starts.push(totalStops);totalStops+=n+1});totalStops--;
 const mix=(a,b,t)=>a+(b-a)*t;
 function paint(el,{x=0,y=0,scale=1,opacity=1,rotate=0}={}){if(!el)return;el.style.transform=`translate(${x}px,${y}px) scale(${scale}) rotate(${rotate}deg)`;el.style.opacity=opacity;el.style.visibility=opacity<.015?'hidden':'visible';el.inert=opacity<.15;}
 function sequence(scene,selector,p,span=1){const els=[...scene.querySelectorAll(selector)];els.forEach((e,j)=>{const v=clamp(p/span*(els.length-1)-j+1);paint(e,{x:reduced?0:(1-v)*90,y:0,opacity:v})})}
 function choreograph(s,i,p){
+ i=Number(s.dataset.motion);
  if(i===2){
   const a=clamp(p),b=clamp(p-1);
   s.querySelectorAll('.news-pool article').forEach((e,j)=>paint(e,{x:a*(400-j*25),y:a*(120-j*160),scale:1-a*.65,rotate:(1-a)*[-5,3,-2][j],opacity:1-a}));
