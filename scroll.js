@@ -4,7 +4,7 @@ let idx=0,stage=0,unit=innerHeight*1.35,raf=0;
 let scrollAnimation=0,scrollDestination=null;
 const track=document.createElement('div');track.className='scroll-track';document.body.append(track);
 const jump=document.getElementById('jump'),film=document.getElementById('story');
-notes.forEach((n,i)=>jump.add(new Option(`${i+1}. ${n.title}`,i)));
+notes.forEach((n,i)=>jump.add(new Option(n.title,i)));
 function fit(){unit=innerHeight*.9;track.style.height=(totalStops*unit+innerHeight)+'px';render()}
 const clamp=x=>Math.max(0,Math.min(1,x));
 function render(){
@@ -25,7 +25,7 @@ function render(){
  document.getElementById('progress').style.width=raw/totalStops*100+'%';
  document.getElementById('prev').disabled=!!scrollAnimation||raw<.01;document.getElementById('next').disabled=!!scrollAnimation||raw>=totalStops-.01;
  document.getElementById('next').textContent=stage<beatCounts[idx]?'계속 ↓':'다음 화면 ↓';
- document.getElementById('note-title').textContent=`${idx+1}. ${notes[idx].title}`;document.getElementById('note-body').textContent=notes[idx].notes;
+ document.getElementById('note-title').textContent=notes[idx].title;document.getElementById('note-body').textContent=notes[idx].notes;
  if(location.hash!=='#'+(idx+1))history.replaceState(null,'','#'+(idx+1));
 }
 function cancelScroll(){cancelAnimationFrame(scrollAnimation);scrollAnimation=0;scrollDestination=null}
