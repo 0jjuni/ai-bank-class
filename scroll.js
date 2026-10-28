@@ -23,7 +23,7 @@ function render(){
  jump.value=idx;document.getElementById('counter').textContent=`${idx+1} / ${slides.length}`;
  document.getElementById('progress').style.width=raw/totalStops*100+'%';
  document.getElementById('prev').disabled=raw<.01;document.getElementById('next').disabled=raw>=totalStops-.01;
- document.getElementById('next').textContent='다음 ↓';
+ document.getElementById('next').textContent=stage<beatCounts[idx]?'계속 ↓':'다음 화면 ↓';
  document.getElementById('note-title').textContent=`${idx+1}. ${notes[idx].title}`;document.getElementById('note-body').textContent=notes[idx].notes;
  if(location.hash!=='#'+(idx+1))history.replaceState(null,'','#'+(idx+1));
 }
@@ -38,8 +38,8 @@ function move(stop,smooth=true){
 }
 function go(n,smooth=true){move(starts[Math.max(0,Math.min(slides.length-1,n))],smooth)}
 function show(n,end=false){n=Math.max(0,Math.min(slides.length-1,n));move(starts[n]+(end?beatCounts[n]:0),false)}
-function next(){if(scrollAnimation)return;go(idx+1)}
-function prev(){if(scrollAnimation)return;go(idx-1)}
+function next(){if(scrollAnimation)return;move(Math.floor(scrollY/unit+.02)+1)}
+function prev(){if(scrollAnimation)return;move(Math.ceil(scrollY/unit-.02)-1)}
 addEventListener('wheel',cancelScroll,{passive:true});addEventListener('touchstart',cancelScroll,{passive:true});
 addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;render()})},{passive:true});
 addEventListener('resize',()=>{const n=idx;fit();go(n,false)});
