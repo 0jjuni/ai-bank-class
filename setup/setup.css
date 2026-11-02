@@ -102,8 +102,8 @@ code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding
 .app-mark{width:56px;height:56px;border-radius:var(--radius);background:var(--surface-2);display:grid;place-items:center}
 .app h3{font-size:28px;margin:0;letter-spacing:-.01em}
 .app-steps{list-style:none;margin:0 0 16px;padding:0;counter-reset:step}
-.app-steps li{position:relative;padding:0 0 28px 48px;counter-increment:step}
-.app-steps li::before{content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:14px;font-weight:800;display:grid;place-items:center}
+.app-steps > li{position:relative;padding:0 0 28px 48px;counter-increment:step}
+.app-steps > li::before{content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:14px;font-weight:800;display:grid;place-items:center}
 .app-steps h4{font-size:19px;margin:0 0 6px;line-height:30px}
 .app-steps p{margin:0 0 12px}
 .app-steps .sub-note{color:var(--muted);font-size:15px}
@@ -225,3 +225,36 @@ body[data-app] .app{animation:rise .4s ease both}
   .intro-head,.intro-scroll,.intro-foot{padding-left:16px;padding-right:16px}
   .intro-scroll .code pre{padding:52px 16px 16px}
 }
+
+/* 어디를 누르는지 보여 주는 앱 화면 그림 (실제 캡처가 아닌 단순화한 그림) */
+.ui-fig{margin:16px 0 8px}
+.ui-frame{display:flex;max-width:420px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);font-size:15px;line-height:1.4;user-select:none}
+.ui-frame i{font-size:19px}
+.ui-fig figcaption{margin-top:10px;font-size:14px;color:var(--muted)}
+.ui-hl{position:relative;outline:2.5px solid #c8902e;outline-offset:2px;border-radius:8px}
+.ui-badge{position:absolute;top:-10px;right:-10px;width:22px;height:22px;border-radius:50%;background:#c8902e;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;font-style:normal}
+
+.ui-light{background:#fff;color:#1f1f1f}
+.ui-light .ui-rail{display:flex;flex-direction:column;gap:6px;padding:12px 8px;background:#f4f4f4;border-right:1px solid #e6e6e6}
+.ui-light .ui-rail span{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;color:#555}
+.ui-light .ui-rail .is-on{background:#e4e4e4;color:#1f1f1f}
+.ui-light .ui-main{flex:1;padding:12px 14px 16px;min-width:0}
+.ui-light .ui-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ui-switch{display:inline-flex;align-items:center;gap:4px;font-size:20px;font-weight:700;padding:4px 8px}
+.ui-switch i{font-size:15px;color:#777}
+.ui-icons{display:flex;gap:12px;color:#666}
+.ui-menu{border:1px solid #e6e6e6;border-radius:12px;padding:6px;box-shadow:0 10px 24px -14px rgb(0 0 0 / .3)}
+.ui-opt{position:relative;display:flex;flex-direction:column;padding:8px 10px;border-radius:8px}
+.ui-opt strong{font-size:16px}
+.ui-opt small{font-size:13px;color:#777}
+.ui-opt.ui-hl{background:#f6f2e8}
+
+.ui-dark{background:#262624;color:#e8e6df}
+.ui-side{flex:1;padding:12px 12px 14px;min-width:0}
+.ui-iconrow{display:flex;align-items:center;gap:10px;color:#b9b6ad;margin-bottom:14px}
+.ui-gap{flex:1}
+.ui-code{display:grid;place-items:center;width:34px;height:30px;background:#3a3936;color:#fff}
+.ui-tip{position:absolute;top:calc(100% + 8px);right:-4px;background:#f2f0ea;color:#262624;font-size:12px;font-weight:700;font-style:normal;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.ui-nav{list-style:none;margin:0;padding:0}
+.ui-nav li{display:flex;align-items:center;gap:10px;padding:7px 4px;color:#d7d4cc}
+.ui-nav i{font-size:18px;color:#b9b6ad}

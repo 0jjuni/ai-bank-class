@@ -8,7 +8,7 @@
 <meta name="description" content="Codex나 Claude를 설치하고 수업에서 소개한 스킬을 추가하는 방법입니다.">
 <link rel="preload" href="../assets/SUIT-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="setup.css?v=20261102l">
+<link rel="stylesheet" href="setup.css?v=20261102n">
 </head>
 <body>
 <header class="topbar">
@@ -88,8 +88,33 @@
           </div>
         </li>
         <li>
-          <h4>로그인하고 폴더 열기</h4>
-          <p>ChatGPT 계정으로 로그인한 다음 위쪽에서 Codex로 바꾸고 작업할 폴더를 고릅니다.</p>
+          <h4>로그인하고 Codex로 바꾸기</h4>
+          <p>ChatGPT 계정으로 로그인합니다. 왼쪽 위 <strong>ChatGPT</strong> 글자를 누르면 목록이 열리고 여기서 <strong>Codex</strong>를 고르면 됩니다.</p>
+          <figure class="ui-fig">
+            <div class="ui-frame ui-light" role="img" aria-label="ChatGPT 앱 왼쪽 위의 ChatGPT 글자를 누르면 ChatGPT와 Codex가 있는 목록이 열리고, Codex를 고르는 모습">
+              <div class="ui-rail">
+                <span class="is-on"><i class="ph ph-house-simple"></i></span>
+                <span><i class="ph ph-cube"></i></span>
+                <span><i class="ph ph-clock"></i></span>
+                <span><i class="ph ph-books"></i></span>
+              </div>
+              <div class="ui-main">
+                <div class="ui-top">
+                  <span class="ui-switch ui-hl">ChatGPT<i class="ph ph-caret-down"></i><b class="ui-badge">1</b></span>
+                  <span class="ui-icons"><i class="ph ph-bell"></i><i class="ph ph-magnifying-glass"></i></span>
+                </div>
+                <div class="ui-menu">
+                  <div class="ui-opt"><strong>ChatGPT</strong><small>만들고, 배우고, 탐색하세요</small></div>
+                  <div class="ui-opt ui-hl"><strong>Codex</strong><small>빌드하고, 디버깅하고, 배포하세요</small><b class="ui-badge">2</b></div>
+                </div>
+              </div>
+            </div>
+            <figcaption>① 왼쪽 위 ChatGPT를 누르고 ② 목록에서 Codex를 고릅니다. 실제 화면과 조금 다를 수 있습니다.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <h4>작업할 폴더 고르기</h4>
+          <p>Codex 화면에서 작업할 폴더를 고릅니다.</p>
           <p class="done-when"><i class="ph ph-check-circle" aria-hidden="true"></i>"이 폴더에 뭐가 있어?"라고 물었을 때 답이 오면 준비가 끝난 것입니다.</p>
         </li>
       </ol>
@@ -123,7 +148,26 @@
         </li>
         <li>
           <h4>Code 탭 열기</h4>
-          <p>왼쪽 사이드바 맨 위에서 <strong>Code</strong> 탭을 누릅니다. 탭이 아이콘으로만 보이면 마우스를 올려 이름을 확인하세요.</p>
+          <p>왼쪽 사이드바 맨 위 줄 오른쪽 끝의 <strong>&lt;/&gt;</strong> 아이콘이 <strong>Code</strong> 탭입니다. 마우스를 올리면 이름이 보입니다.</p>
+          <figure class="ui-fig">
+            <div class="ui-frame ui-dark" role="img" aria-label="Claude 앱 왼쪽 사이드바 맨 위 줄 오른쪽 끝에 있는 꺾쇠 모양 Code 아이콘을 누르는 모습">
+              <div class="ui-side">
+                <div class="ui-iconrow">
+                  <i class="ph ph-list"></i><i class="ph ph-sidebar-simple"></i><i class="ph ph-caret-left"></i><i class="ph ph-caret-right"></i>
+                  <span class="ui-gap"></span>
+                  <i class="ph ph-chat-circle-dots"></i>
+                  <span class="ui-code ui-hl"><i class="ph ph-code"></i><b class="ui-badge">1</b><em class="ui-tip">Code</em></span>
+                </div>
+                <ul class="ui-nav">
+                  <li><i class="ph ph-plus"></i>새로 만들기</li>
+                  <li><i class="ph ph-magnifying-glass"></i>검색</li>
+                  <li><i class="ph ph-copy"></i>아티팩트</li>
+                  <li><i class="ph ph-briefcase"></i>사용자 지정</li>
+                </ul>
+              </div>
+            </div>
+            <figcaption>① 맨 위 줄 오른쪽 끝 &lt;/&gt; 아이콘을 누릅니다. 실제 화면과 조금 다를 수 있습니다.</figcaption>
+          </figure>
           <p class="sub-note">요금제를 올리라는 안내가 뜬다면 무료 계정이라는 뜻입니다. Code 탭은 Pro 이상에서만 열립니다.</p>
         </li>
         <li>
@@ -221,7 +265,7 @@ git config --global user.email "내메일@example.com"</code></pre>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="skills.js?v=20261102l"></script>
-<script src="setup.js?v=20261102l"></script>
+<script src="skills.js?v=20261102n"></script>
+<script src="setup.js?v=20261102n"></script>
 </body>
 </html>
