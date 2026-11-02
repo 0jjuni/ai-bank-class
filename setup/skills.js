@@ -106,5 +106,30 @@ window.CLASS_SKILLS = [
         "Codex에서는 $humanize-korean, Claude에서는 /humanize-korean으로 바로 부를 수도 있습니다."
       ]
     }
+  },
+  {
+    id: "prompt-master",
+    name: "Prompt Master",
+    use: "프롬프트",
+    summary: "다른 AI 도구에 넣을 요청문을 대신 써 줍니다.",
+    repo: "https://github.com/nidhinjs/prompt-master",
+    tools: ["codex", "claude"],
+    commands: [],
+    intro: {
+      what: "ChatGPT, Gemini, Midjourney, ElevenLabs처럼 다른 AI 도구에 넣을 요청문(프롬프트)을 써 주는 스킬입니다. 어떤 도구에 쓸지 먼저 알아보고, 하려는 일과 대상, 결과물 형태를 정리해 그 도구에 맞는 형식으로 바꿔 줍니다. 꼭 필요한 정보가 빠졌으면 최대 세 가지까지 되묻습니다.",
+      when: [
+        "이미지나 음성 AI에 무엇을 어떻게 적어야 할지 막막할 때",
+        "같은 요청을 여러 번 고쳐 쓰느라 사용량이 아까울 때"
+      ],
+      prompts: [
+        "Prompt Master로 Midjourney 프롬프트를 써줘. 은행 창구에서 고객과 상담하는 장면, 밝고 따뜻한 사진 느낌이야.",
+        "ChatGPT에 넣을 프롬프트를 만들어줘. 연금 상품 설명을 고등학생도 이해하게 5문단으로 풀어 쓰는 일이야.",
+        "ElevenLabs로 이 대본을 읽힐 건데, 차분한 남성 목소리가 나오게 요청문을 써줘."
+      ],
+      notes: [
+        "설명서는 Claude 기준으로 쓰여 있습니다. Claude 앱에서는 /prompt-master로 바로 부를 수 있습니다.",
+        "만들어 준 요청문은 그대로 복사해서 해당 AI 도구에 붙여 넣으면 됩니다."
+      ]
+    }
   }
 ];
