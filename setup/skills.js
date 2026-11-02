@@ -1,6 +1,7 @@
 // 수업에서 쓰는 스킬 목록. 새 스킬은 이 배열에 한 항목씩 추가한다.
 // tools: 설치 가능한 도구 ("codex", "claude")
 // commands: 링크로 맡기는 대신 직접 칠 수 있는 공식 명령어가 있을 때만 적는다.
+//   app을 적으면 그 앱을 골랐을 때만 보인다.
 window.CLASS_SKILLS = [
   {
     id: "hyperframes",
@@ -41,7 +42,7 @@ window.CLASS_SKILLS = [
     repo: "https://github.com/epoko77-ai/im-not-ai",
     tools: ["codex", "claude"],
     commands: [
-      { label: "Claude Code 입력창에 차례로", code: "/plugin marketplace add epoko77-ai/im-not-ai\n/plugin install humanize-korean@im-not-ai" }
+      { app: "claude", label: "Claude Code 입력창에 차례로", code: "/plugin marketplace add epoko77-ai/im-not-ai\n/plugin install humanize-korean@im-not-ai" }
     ]
   }
 ];

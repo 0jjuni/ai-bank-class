@@ -1,39 +1,23 @@
 @font-face{font-family:SUIT;src:url("../assets/SUIT-Variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
 
+/* 시스템 밝기 설정과 관계없이 짙은 초록 화면 하나로 고정 */
 :root{
-  --bg:#f5f7f2;
-  --surface:#ffffff;
-  --surface-2:#eaf0e3;
-  --line:#d6e0cf;
-  --text:#17261f;
-  --muted:#4e5f55;
-  --accent:#245441;
-  --accent-soft:#dce8d2;
-  --on-accent:#f5f7f2;
-  --code-bg:#14241c;
+  --bg:#0f1913;
+  --surface:#16231c;
+  --surface-2:#1c2c23;
+  --line:#2b3d33;
+  --text:#e6eee4;
+  --muted:#a4b4a8;
+  --accent:#9cc79a;
+  --accent-soft:#24382c;
+  --on-accent:#0f1913;
+  --code-bg:#0a120e;
   --code-text:#e6eee4;
   --focus:#c2a86e;
-  --shadow:0 18px 40px -24px rgb(36 84 65 / .35);
+  --shadow:0 18px 40px -24px rgb(0 0 0 / .6);
   --radius:12px;
   --mono:ui-monospace,"Cascadia Code",Consolas,SUIT,monospace;
-  color-scheme:light;
-}
-@media (prefers-color-scheme:dark){
-  :root{
-    --bg:#0f1913;
-    --surface:#16231c;
-    --surface-2:#1c2c23;
-    --line:#2b3d33;
-    --text:#e6eee4;
-    --muted:#a4b4a8;
-    --accent:#9cc79a;
-    --accent-soft:#24382c;
-    --on-accent:#0f1913;
-    --code-bg:#0a120e;
-    --code-text:#e6eee4;
-    --shadow:0 18px 40px -24px rgb(0 0 0 / .6);
-    color-scheme:dark;
-  }
+  color-scheme:dark;
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -89,28 +73,47 @@ code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding
 .section-title{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.02em;margin:0 0 12px;font-weight:800}
 .section-lead{color:var(--muted);max-width:40em;margin:0 0 40px}
 
-/* 기본 설치 단계 */
-.base{padding-bottom:96px}
-.steps{list-style:none;margin:0;padding:0;counter-reset:step}
-.step{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:40px 0;border-top:1px solid var(--line)}
-.step-mark{position:relative;width:64px;height:64px;border-radius:var(--radius);background:var(--surface-2);display:grid;place-items:center;counter-increment:step}
-.step-mark::after{content:counter(step);position:absolute;top:-8px;right:-8px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:800;display:grid;place-items:center}
-.logo-dark{display:none}
-@media (prefers-color-scheme:dark){
-  .logo-light{display:none}
-  .logo-dark{display:block}
-  .logo-invert{filter:invert(1)}
-}
-.step-body{max-width:44em}
-.step h3{font-size:24px;margin:0 0 8px;letter-spacing:-.01em}
-.step p{margin:0 0 16px}
-.actions{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
-.done-when{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:15px;margin-top:20px!important}
+.logo-invert{filter:invert(1)}
+
+/* 앱 고르기 */
+.pick{padding-bottom:80px}
+.guide{list-style:none;margin:0 0 32px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.guide li{display:flex;flex-direction:column;gap:4px;padding:16px 20px;border-radius:var(--radius);background:var(--surface)}
+.guide span{color:var(--muted);font-size:15px}
+.guide strong{font-size:18px}
+@media (max-width:640px){.guide{grid-template-columns:1fr}}
+
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.choice{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:16px;row-gap:2px;align-items:center;text-align:left;padding:24px;border-radius:var(--radius);border:2px solid var(--line);background:var(--surface);color:var(--text);font:inherit;cursor:pointer;transition:border-color .2s ease,background-color .2s ease,transform .15s ease}
+.choice:hover{border-color:color-mix(in srgb,var(--accent) 60%,var(--line))}
+.choice:active{transform:translateY(1px)}
+.choice img{grid-row:1 / 3}
+.choice-name{font-size:22px;font-weight:800}
+.choice-note{color:var(--muted);font-size:15px}
+.choice[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft)}
+@media (max-width:640px){.choices{grid-template-columns:1fr}}
+.free-note{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:15px;margin:20px 0 0;max-width:48em}
+.free-note i{font-size:20px;flex:none;margin-top:1px}
+
+/* 앱별 설치 */
+.install{padding-bottom:96px}
+.app{padding:40px 0;border-top:1px solid var(--line);max-width:52em}
+.app-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.app-mark{width:56px;height:56px;border-radius:var(--radius);background:var(--surface-2);display:grid;place-items:center}
+.app h3{font-size:28px;margin:0;letter-spacing:-.01em}
+.app-steps{list-style:none;margin:0 0 16px;padding:0;counter-reset:step}
+.app-steps li{position:relative;padding:0 0 28px 48px;counter-increment:step}
+.app-steps li::before{content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:14px;font-weight:800;display:grid;place-items:center}
+.app-steps h4{font-size:19px;margin:0 0 6px;line-height:30px}
+.app-steps p{margin:0 0 12px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 0}
+.done-when{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:15px}
 .done-when i{color:var(--accent);font-size:20px;flex:none;margin-top:1px}
-@media (max-width:640px){
-  .step{grid-template-columns:1fr;gap:16px;padding:32px 0}
-  .step-mark{width:52px;height:52px}
-}
+
+/* 고른 앱만 보이기 */
+body[data-app="codex"] [data-app-only="claude"],
+body[data-app="claude"] [data-app-only="codex"]{display:none}
+body[data-app] .pick-hint{display:none}
 
 /* 코드 블록 */
 .code{position:relative;background:var(--code-bg);color:var(--code-text);border-radius:var(--radius);margin:16px 0}
@@ -169,6 +172,15 @@ code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding
 
 .caution{display:flex;gap:10px;align-items:flex-start;margin:40px 0 0;color:var(--muted);font-size:15px;max-width:48em}
 .caution i{font-size:20px;flex:none;margin-top:1px}
+
+/* 필요할 때만 */
+.extra{padding-top:88px}
+.extra-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.extra-item{display:grid;grid-template-columns:28px 1fr;gap:16px;padding:24px;border:1px solid var(--line);border-radius:var(--radius)}
+.extra-item h3{font-size:20px;margin:0 0 6px}
+.extra-item p{margin:0 0 16px;color:var(--muted)}
+.extra-item .more{margin-top:16px}
+@media (max-width:760px){.extra-list{grid-template-columns:1fr}}
 
 .footer{padding:40px 24px 56px;font-size:15px}
 .footer a{color:var(--muted);text-underline-offset:3px}

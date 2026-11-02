@@ -59,16 +59,39 @@
     var n = boxes.filter(function (b) { return b.checked; }).length;
     countEl.textContent = n + " / " + boxes.length;
   }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(saved)); } catch (e) {}
+  }
   boxes.forEach(function (b) {
     b.checked = !!saved[b.dataset.step];
     b.addEventListener("change", function () {
       saved[b.dataset.step] = b.checked;
-      try { localStorage.setItem(STORE_KEY, JSON.stringify(saved)); } catch (e) {}
+      save();
       renderCount();
-      if (boxes.every(function (x) { return x.checked; })) toast("기본 설치를 마쳤습니다. 이제 스킬을 추가하세요.");
+      if (boxes.every(function (x) { return x.checked; })) toast("수업 준비를 마쳤습니다.");
     });
   });
   renderCount();
+
+  // 설치할 앱 고르기. 같은 버튼을 다시 누르면 선택을 풀고 둘 다 보여 준다.
+  var choiceBtns = Array.prototype.slice.call(document.querySelectorAll("[data-choose]"));
+  function applyApp(app) {
+    if (app) document.body.dataset.app = app;
+    else delete document.body.dataset.app;
+    choiceBtns.forEach(function (b) {
+      b.setAttribute("aria-checked", String(b.dataset.choose === app));
+    });
+  }
+  choiceBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var app = saved.app === b.dataset.choose ? "" : b.dataset.choose;
+      saved.app = app;
+      save();
+      applyApp(app);
+      if (app) document.getElementById("install").scrollIntoView({ block: "start" });
+    });
+  });
+  applyApp(saved.app || "");
 
   // 스킬 목록
   var skills = window.CLASS_SKILLS || [];
@@ -90,9 +113,10 @@
   function card(skill) {
     var tools = skill.tools.map(function (t) { return TOOL_NAME[t]; }).join(", ");
     var cmds = (skill.commands || []).map(function (c) {
-      return '<p class="cmd-label">' + esc(c.label) + '</p>' +
+      var only = c.app ? ' data-app-only="' + esc(c.app) + '"' : "";
+      return '<div' + only + '><p class="cmd-label">' + esc(c.label) + '</p>' +
         '<div class="code"><pre><code>' + esc(c.code) + '</code></pre>' +
-        '<button class="copy" type="button" data-copy-prev>복사</button></div>';
+        '<button class="copy" type="button" data-copy-prev>복사</button></div></div>';
     }).join("");
     return '<li class="skill">' +
       '<div class="skill-top"><h4>' + esc(skill.name) + '</h4><span class="tag">' + esc(skill.use) + '</span></div>' +
