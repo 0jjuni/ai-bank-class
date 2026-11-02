@@ -68,7 +68,7 @@
       saved[b.dataset.step] = b.checked;
       save();
       renderCount();
-      if (boxes.every(function (x) { return x.checked; })) toast("수업 준비를 마쳤습니다.");
+      if (boxes.every(function (x) { return x.checked; })) toast("설치와 스킬 추가를 마쳤습니다.");
     });
   });
   renderCount();
