@@ -1,7 +1,5 @@
 // 수업에서 쓰는 스킬 목록. 새 스킬은 이 배열에 한 항목씩 추가한다.
 // tools: 설치 가능한 도구 ("codex", "claude")
-// commands: 링크로 맡기는 대신 직접 칠 수 있는 공식 명령어가 있을 때만 적는다.
-//   app을 적으면 그 앱을 골랐을 때만 보인다.
 // intro: "스킬 소개" 팝업 내용. 각 저장소 README를 근거로 정리한다.
 //   what 무엇인지, when 언제 쓰는지, prompts 요청 예시(복사 버튼), notes 알아 둘 것
 window.CLASS_SKILLS = [
@@ -12,9 +10,6 @@ window.CLASS_SKILLS = [
     summary: "장면, 움직임, 자막을 엮어 설명 영상을 만듭니다.",
     repo: "https://github.com/heygen-com/hyperframes",
     tools: ["codex", "claude"],
-    commands: [
-      { label: "터미널에서 설치 (Node.js 필요)", code: "npx skills add heygen-com/hyperframes" }
-    ],
     intro: {
       what: "HeyGen이 공개한 영상 제작 도구입니다. AI가 장면을 웹페이지처럼 만들고 움직임을 붙인 다음, 한 장면씩 찍어 MP4 영상으로 뽑아 줍니다. 같은 내용을 다시 뽑으면 같은 영상이 나옵니다.",
       when: [
@@ -39,7 +34,6 @@ window.CLASS_SKILLS = [
     summary: "화면 종류에 맞는 색상, 글꼴, 배치 기준을 찾아 줍니다.",
     repo: "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
     tools: ["codex", "claude"],
-    commands: [],
     intro: {
       what: "화면 디자인 기준을 모아 둔 자료집입니다. 만들려는 화면이 어떤 종류인지 말하면 거기에 맞는 색 조합, 글꼴, 배치 방식과 피해야 할 디자인을 골라 줍니다. 버튼 크기나 글자 대비처럼 쓰기 편한 화면의 기준도 함께 챙깁니다.",
       when: [
@@ -63,7 +57,6 @@ window.CLASS_SKILLS = [
     summary: "흔한 AI 디자인 습관을 걸러 내고 화면을 다듬습니다.",
     repo: "https://github.com/Leonxlnx/taste-skill",
     tools: ["codex", "claude"],
-    commands: [],
     intro: {
       what: "AI가 만든 화면이 다 비슷해 보이는 문제를 줄이는 스킬입니다. 요청을 읽고 디자인 방향을 하나 정한 뒤, 실제 사진을 넣어 화면을 만들고 브라우저에서 화면 폭 세 가지로 직접 확인하며 눈에 띄는 문제를 고칩니다. 이미 있는 페이지는 먼저 점검하고 나서 손댑니다.",
       when: [
@@ -87,9 +80,6 @@ window.CLASS_SKILLS = [
     summary: "번역투와 딱딱한 표현을 평소 말투의 한국어로 고칩니다.",
     repo: "https://github.com/epoko77-ai/im-not-ai",
     tools: ["codex", "claude"],
-    commands: [
-      { app: "claude", label: "Claude Code 입력창에 차례로", code: "/plugin marketplace add epoko77-ai/im-not-ai\n/plugin install humanize-korean@im-not-ai" }
-    ],
     intro: {
       what: "AI가 쓴 한글에서 티 나는 부분을 찾아 자연스러운 문장으로 고치는 스킬입니다. 번역투, 영어 단어 남발, \"첫째, 둘째, 셋째\" 식의 나열, \"결론적으로\" 같은 상투적인 표현을 잡아냅니다. 문체와 표현만 고치고 사실, 숫자, 고유명사, 따옴표 안 인용은 건드리지 않습니다.",
       when: [
@@ -114,7 +104,6 @@ window.CLASS_SKILLS = [
     summary: "다른 AI 도구에 넣을 요청문을 대신 써 줍니다.",
     repo: "https://github.com/nidhinjs/prompt-master",
     tools: ["codex", "claude"],
-    commands: [],
     intro: {
       what: "ChatGPT, Gemini, Midjourney, ElevenLabs처럼 다른 AI 도구에 넣을 요청문(프롬프트)을 써 주는 스킬입니다. 어떤 도구에 쓸지 먼저 알아보고, 하려는 일과 대상, 결과물 형태를 정리해 그 도구에 맞는 형식으로 바꿔 줍니다. 꼭 필요한 정보가 빠졌으면 최대 세 가지까지 되묻습니다.",
       when: [

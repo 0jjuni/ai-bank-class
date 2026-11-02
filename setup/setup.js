@@ -112,17 +112,13 @@
 
   function card(skill) {
     var tools = skill.tools.map(function (t) { return TOOL_NAME[t]; }).join(", ");
-    var cmds = (skill.commands || []).map(function (c) {
-      var only = c.app ? ' data-app-only="' + esc(c.app) + '"' : "";
-      return '<div' + only + '><p class="cmd-label">' + esc(c.label) + '</p>' +
-        '<div class="code"><pre><code>' + esc(c.code) + '</code></pre>' +
-        '<button class="copy" type="button" data-copy-prev>복사</button></div></div>';
-    }).join("");
+    // 앱에 보낼 설치 요청을 그대로 보여 준다. 복사는 아래 "설치 요청 복사" 버튼 하나로.
+    var request = '<div class="code code-request"><pre><code>이 GitHub 링크의 스킬을 설치하고, 사용 방법을 알려줘.\n' +
+      '<a href="' + esc(skill.repo) + '" target="_blank" rel="noopener">' + esc(skill.repo) + '</a></code></pre></div>';
     return '<li class="skill">' +
       '<div class="skill-top"><h4>' + esc(skill.name) + '</h4><span class="tag">' + esc(skill.use) + '</span></div>' +
       '<p>' + esc(skill.summary) + ' <span class="tools">' + esc(tools) + '에서 쓸 수 있습니다.</span></p>' +
-      '<a class="repo" href="' + esc(skill.repo) + '" target="_blank" rel="noopener">' + esc(skill.repo.replace("https://", "")) + '</a>' +
-      cmds +
+      request +
       '<div class="skill-actions">' +
         '<button class="btn btn-primary" type="button" data-copy="' + esc(promptFor(skill)) + '">설치 요청 복사</button>' +
         (skill.intro ? '<button class="btn btn-ghost" type="button" data-intro="' + esc(skill.id) + '">스킬 소개</button>' : '') +
