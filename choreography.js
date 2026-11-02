@@ -1,6 +1,6 @@
 // A scene owns several scroll stops. Intermediate stops change its contents,
 // rather than navigating straight past the demonstration.
-const beatPresets=[0,0,2,1,3,0,0,1,0,0,0,0,1,1,2,1,1,1,2,1];
+const beatPresets=[0,0,2,1,3,0,0,2,0,0,0,0,1,1,2,1,1,1,2,1];
 const beatCounts=[...document.querySelectorAll('.slide')].map(s=>s.dataset.motion==='overview'?0:(beatPresets[+s.dataset.motion]||0));
 const starts=[];let totalStops=0;beatCounts.forEach(n=>{starts.push(totalStops);totalStops+=n+1});totalStops--;
 const mix=(a,b,t)=>a+(b-a)*t;
@@ -30,7 +30,14 @@ function choreograph(s,i,p){
  }
  if(i===3){const a=clamp(p);paint(s.querySelector('.prompt-slip'),{x:-a*60,opacity:1-a*.7});paint(s.querySelector('.deck-stack'),{x:-a*230,scale:1+a*.15});s.querySelectorAll('.mini-slide.back,.mini-slide.mid').forEach((e,j)=>{e.style.translate=`${a*(j?100:-100)}px ${a*(j?65:-45)}px`})}
  if(i===6)s.classList.toggle('auto-workspace',!reduced);
- if(i===7){paint(s.querySelector('.skill-folder'),{x:(1-p)*360,scale:1+(1-p)*.05});paint(s.querySelector('.skill-how'),{x:(1-p)*80,opacity:clamp(p)});}
+ if(i===7){
+  const first=clamp(p), analogy=clamp(p-1);
+  paint(s.querySelector('.skill-folder'),{x:(1-first)*360,scale:1+(1-first)*.05});
+  paint(s.querySelector('.skill-how'),{x:(1-first)*80,opacity:first});
+  for(const el of s.querySelectorAll('.skill-main,.footnote'))paint(el,{opacity:1-analogy});
+  paint(s.querySelector('.phone-metaphor'),{opacity:analogy,y:reduced?0:(1-analogy)*35});
+  paint(s.querySelector('.added-map'),{opacity:clamp(analogy*2-.85),scale:.7+.3*analogy});
+ }
 
  if(i===10)s.classList.toggle('auto-prompt',!reduced);
  if(i===12)sequence(s,'.design-request > *',p);
