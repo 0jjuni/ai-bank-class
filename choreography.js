@@ -1,6 +1,6 @@
 // A scene owns several scroll stops. Intermediate stops change its contents,
 // rather than navigating straight past the demonstration.
-const beatPresets=[0,0,2,1,3,0,1,1,3,0,3,0,1,1,2,1,1,1,2,1];
+const beatPresets=[0,0,2,1,3,0,1,1,0,0,3,0,1,1,2,1,1,1,2,1];
 const beatCounts=[...document.querySelectorAll('.slide')].map(s=>s.dataset.motion==='overview'?0:(beatPresets[+s.dataset.motion]||0));
 const starts=[];let totalStops=0;beatCounts.forEach(n=>{starts.push(totalStops);totalStops+=n+1});totalStops--;
 const mix=(a,b,t)=>a+(b-a)*t;
@@ -31,7 +31,6 @@ function choreograph(s,i,p){
  if(i===3){const a=clamp(p);paint(s.querySelector('.prompt-slip'),{x:-a*60,opacity:1-a*.7});paint(s.querySelector('.deck-stack'),{x:-a*230,scale:1+a*.15});s.querySelectorAll('.mini-slide.back,.mini-slide.mid').forEach((e,j)=>{e.style.translate=`${a*(j?100:-100)}px ${a*(j?65:-45)}px`})}
  if(i===6){s.querySelectorAll('.work-destination').forEach(e=>paint(e,{x:(1-p)*80,opacity:clamp(p)}));s.querySelectorAll('.work-arrow').forEach(e=>paint(e,{x:(1-p)*-60,opacity:clamp(p)}));paint(s.querySelector('.agent-workflow'),{y:(1-p)*50,opacity:clamp(p)})}
  if(i===7){paint(s.querySelector('.skill-folder'),{x:(1-p)*360,scale:1+(1-p)*.05});paint(s.querySelector('.skill-how'),{x:(1-p)*80,opacity:clamp(p)});}
- if(i===8){s.querySelectorAll('.skill-showcase article').forEach((el,j)=>{const f=1-Math.min(1,Math.abs(Math.min(p,2)-j));paint(el,{y:(1-f)*14,opacity:.38+.62*f});el.classList.toggle('focused',f>.5)});paint(s.querySelector('.install-strip'),{y:(1-clamp(p-2))*35,opacity:clamp(p-2)});}
 
  if(i===10)sequence(s,'.prompt-paragraph',p,3);
  if(i===12)sequence(s,'.design-request > *',p);
