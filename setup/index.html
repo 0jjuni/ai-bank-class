@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>설치 안내 | AI 활용, 한 걸음 더</title>
+<meta name="description" content="GitHub, Git, Codex, Claude를 설치하고 수업에서 쓰는 스킬을 추가하는 순서입니다.">
+<link rel="preload" href="../assets/SUIT-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="setup.css?v=20261102">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="../">AI 활용, 한 걸음 더</a>
+    <nav aria-label="페이지 안 이동">
+      <a href="#base">기본 설치</a>
+      <a href="#skills">스킬 설치</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <h1 id="hero-title">수업 전에<br>이것만 설치해 오세요</h1>
+      <p class="lead">GitHub 계정과 Git을 준비하고 Codex와 Claude를 설치한 뒤 스킬을 추가합니다. 위에서부터 차례로 따라 하면 됩니다.</p>
+      <a class="btn btn-primary" href="#github">GitHub부터 시작</a>
+    </div>
+
+    <aside class="checklist" aria-labelledby="check-title">
+      <div class="checklist-head">
+        <h2 id="check-title">내 준비 상태</h2>
+        <span class="check-count" id="check-count" aria-live="polite">0 / 4</span>
+      </div>
+      <ol class="check-items">
+        <li><label><input type="checkbox" data-step="github"><span>GitHub 계정</span></label><a href="#github">보기</a></li>
+        <li><label><input type="checkbox" data-step="git"><span>Git 설치와 이름 등록</span></label><a href="#git">보기</a></li>
+        <li><label><input type="checkbox" data-step="codex"><span>Codex 로그인</span></label><a href="#codex">보기</a></li>
+        <li><label><input type="checkbox" data-step="claude"><span>Claude 로그인</span></label><a href="#claude">보기</a></li>
+      </ol>
+      <p class="check-note">체크한 내용은 이 브라우저에만 남습니다.</p>
+    </aside>
+  </section>
+
+  <section id="base" class="base wrap" aria-labelledby="base-title">
+    <h2 id="base-title" class="section-title">기본 설치</h2>
+    <p class="section-lead">Windows 기준입니다. 관리자 권한이 필요한 PC라면 설치 전에 전산 담당자에게 먼저 확인하세요.</p>
+
+    <ol class="steps">
+      <li class="step" id="github">
+        <div class="step-mark"><img src="https://cdn.simpleicons.org/github/245441" alt="" width="28" height="28" class="logo logo-light"><img src="https://cdn.simpleicons.org/github/e6eee4" alt="" width="28" height="28" class="logo logo-dark"></div>
+        <div class="step-body">
+          <h3>GitHub 계정 만들기</h3>
+          <p>스킬은 대부분 GitHub에 올라와 있습니다. 링크를 열어 보거나 내 작업을 저장하려면 계정이 있어야 합니다. 회사 메일보다 개인 메일로 가입하는 편이 관리하기 쉽습니다.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://github.com/signup" target="_blank" rel="noopener">GitHub 가입<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+          <p class="done-when"><i class="ph ph-check-circle" aria-hidden="true"></i>로그인한 뒤 오른쪽 위에 내 프로필 사진이 보이면 끝입니다.</p>
+        </div>
+      </li>
+
+      <li class="step" id="git">
+        <div class="step-mark"><img src="https://cdn.simpleicons.org/git/245441" alt="" width="28" height="28" class="logo logo-light"><img src="https://cdn.simpleicons.org/git/e6eee4" alt="" width="28" height="28" class="logo logo-dark"></div>
+        <div class="step-body">
+          <h3>Git 설치하고 내 이름 등록하기</h3>
+          <p>Git은 파일이 바뀐 기록을 남기고 GitHub와 주고받는 프로그램입니다. Codex와 Claude도 작업 폴더를 다룰 때 Git을 씁니다. 설치 화면의 선택지는 기본값 그대로 두고 Next를 눌러도 됩니다.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">Git for Windows 받기<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+          <p>설치가 끝나면 시작 메뉴에서 PowerShell을 열고 아래 명령어를 한 줄씩 붙여 넣습니다. 따옴표 안은 내 이름과 GitHub에 가입한 메일로 바꿉니다.</p>
+          <div class="code">
+            <pre><code>git --version
+git config --global user.name "내 이름"
+git config --global user.email "가입한메일@example.com"</code></pre>
+            <button class="copy" type="button" data-copy-prev>복사</button>
+          </div>
+          <p class="done-when"><i class="ph ph-check-circle" aria-hidden="true"></i>첫 줄에서 <code>git version 2.xx</code>처럼 버전이 나오면 설치된 것입니다. GitHub 로그인 창은 처음 올릴 때 브라우저로 뜹니다.</p>
+        </div>
+      </li>
+
+      <li class="step" id="codex">
+        <div class="step-mark"><img src="../assets/openai.svg" alt="" width="28" height="28" class="logo logo-invert"></div>
+        <div class="step-body">
+          <h3>Codex 설치하기</h3>
+          <p>Codex는 ChatGPT 데스크톱 앱 안에서 씁니다. 앱을 받아 ChatGPT 계정으로 로그인한 다음, 위쪽에서 Codex로 바꾸고 작업할 폴더를 고르면 됩니다.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://openai.com/codex/" target="_blank" rel="noopener">Codex 받기<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="btn btn-ghost" href="https://developers.openai.com/codex/" target="_blank" rel="noopener">공식 안내</a>
+          </div>
+          <details class="more">
+            <summary>터미널에서 쓰고 싶다면</summary>
+            <p>PowerShell에 붙여 넣으면 터미널용 Codex가 설치됩니다. 설치 후 <code>codex</code>를 입력하면 시작합니다.</p>
+            <div class="code">
+              <pre><code>powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"</code></pre>
+              <button class="copy" type="button" data-copy-prev>복사</button>
+            </div>
+          </details>
+          <p class="done-when"><i class="ph ph-check-circle" aria-hidden="true"></i>Codex 화면에서 폴더를 열고 "이 폴더에 뭐가 있어?"라고 물었을 때 답이 오면 됩니다.</p>
+        </div>
+      </li>
+
+      <li class="step" id="claude">
+        <div class="step-mark"><img src="../assets/claude.svg" alt="" width="28" height="28" class="logo"></div>
+        <div class="step-body">
+          <h3>Claude 설치하기</h3>
+          <p>Claude 데스크톱 앱을 받아 로그인합니다. 폴더를 열고 파일을 고치는 작업은 앱의 Code 탭에서 하며, Pro 이상 요금제가 필요합니다.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://claude.com/download" target="_blank" rel="noopener">Claude 받기<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="btn btn-ghost" href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">공식 안내</a>
+          </div>
+          <details class="more">
+            <summary>터미널에서 쓰고 싶다면</summary>
+            <p>PowerShell에 붙여 넣으면 Claude Code가 설치됩니다. 새 창을 열고 <code>claude</code>를 입력하면 브라우저 로그인으로 이어집니다.</p>
+            <div class="code">
+              <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+              <button class="copy" type="button" data-copy-prev>복사</button>
+            </div>
+          </details>
+          <p class="done-when"><i class="ph ph-check-circle" aria-hidden="true"></i>Code 탭에서 폴더를 고르고 질문했을 때 답이 오면 됩니다.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="skills" class="skills" aria-labelledby="skills-title">
+    <div class="wrap">
+      <h2 id="skills-title" class="section-title">스킬 설치</h2>
+      <p class="section-lead">스킬은 AI에게 일하는 방법을 적어 둔 폴더입니다. 설치는 두 가지 방법이 있고 처음이라면 왼쪽 방법이 편합니다.</p>
+
+      <div class="methods">
+        <article class="method method-main">
+          <h3>AI에게 설치를 맡기기</h3>
+          <p>Codex나 Claude 입력창에 스킬의 GitHub 링크와 함께 아래처럼 보냅니다. 설치가 끝나면 앱을 껐다 켜야 목록에 보이는 경우가 있습니다.</p>
+          <div class="code code-prompt">
+            <pre><code>이 GitHub 링크의 스킬을 설치하고, 사용 방법을 알려줘.
+https://github.com/...</code></pre>
+            <button class="copy" type="button" data-copy-prev>복사</button>
+          </div>
+        </article>
+        <article class="method">
+          <h3>폴더에 직접 넣기</h3>
+          <p>GitHub에서 받은 스킬 폴더를 아래 위치에 넣습니다. 폴더 안에 <code>SKILL.md</code> 파일이 있어야 합니다.</p>
+          <dl class="paths">
+            <div><dt>Codex</dt><dd><code>C:\Users\내이름\.codex\skills</code></dd></div>
+            <div><dt>Claude</dt><dd><code>C:\Users\내이름\.claude\skills</code></dd></div>
+          </dl>
+        </article>
+      </div>
+
+      <div class="skill-head">
+        <h3 class="skill-list-title">수업에서 쓰는 스킬</h3>
+        <div class="filters" role="group" aria-label="용도로 거르기" id="filters"></div>
+      </div>
+      <ul class="skill-list" id="skill-list" aria-live="polite"></ul>
+      <p class="skill-empty" id="skill-empty" hidden>이 용도의 스킬은 아직 없습니다.</p>
+
+      <p class="caution"><i class="ph ph-warning-circle" aria-hidden="true"></i>스킬은 남이 만든 지시문입니다. 설치 전에 GitHub 페이지에서 만든 사람과 설명을 한 번 읽어 보고 업무 PC에서는 회사 보안 규정을 먼저 따르세요.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer wrap">
+  <a href="../">발표 자료로 돌아가기</a>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="skills.js?v=20261102"></script>
+<script src="setup.js?v=20261102"></script>
+</body>
+</html>
