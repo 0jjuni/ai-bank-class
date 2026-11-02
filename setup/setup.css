@@ -141,6 +141,7 @@ body[data-app] .pick-hint{display:none}
 .method-main p{color:var(--text)}
 /* 오늘 수업에서 쓰지 않는 방법은 어둡게 눌러 둔다 */
 .method-off{background:#e2e3dc;border-color:transparent;filter:grayscale(1);opacity:.55}
+.more-off{background:#e2e3dc;border-color:transparent;filter:grayscale(1);opacity:.55}
 .off-tag{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--text);color:var(--bg);font-size:12px;font-weight:700;vertical-align:middle}
 .paths{margin:16px 0 0}
 .paths div{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;padding:10px 0}

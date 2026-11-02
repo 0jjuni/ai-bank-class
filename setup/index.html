@@ -8,7 +8,7 @@
 <meta name="description" content="Codex와 Claude 중 하나를 설치하고 수업에서 쓰는 스킬을 추가하는 순서입니다.">
 <link rel="preload" href="../assets/SUIT-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="setup.css?v=20261102d">
+<link rel="stylesheet" href="setup.css?v=20261102e">
 </head>
 <body>
 <header class="topbar">
@@ -93,8 +93,8 @@
           <p class="done-when"><i class="ph ph-check-circle" aria-hidden="true"></i>"이 폴더에 뭐가 있어?"라고 물었을 때 답이 오면 준비가 끝난 것입니다.</p>
         </li>
       </ol>
-      <details class="more">
-        <summary>터미널에서 쓰고 싶다면</summary>
+      <details class="more more-off">
+        <summary>터미널에서 쓰고 싶다면 <span class="off-tag">오늘은 안 씀</span></summary>
         <p>PowerShell에 붙여 넣으면 터미널용 Codex가 설치됩니다. 설치 후 <code>codex</code>를 입력하면 시작합니다.</p>
         <div class="code">
           <pre><code>powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"</code></pre>
@@ -123,8 +123,8 @@
           <p class="done-when"><i class="ph ph-check-circle" aria-hidden="true"></i>"이 폴더에 뭐가 있어?"라고 물었을 때 답이 오면 준비가 끝난 것입니다.</p>
         </li>
       </ol>
-      <details class="more">
-        <summary>터미널에서 쓰고 싶다면</summary>
+      <details class="more more-off">
+        <summary>터미널에서 쓰고 싶다면 <span class="off-tag">오늘은 안 씀</span></summary>
         <p>PowerShell에 붙여 넣으면 Claude Code가 설치됩니다. 새 창을 열고 <code>claude</code>를 입력하면 브라우저 로그인으로 이어집니다.</p>
         <div class="code">
           <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
@@ -207,7 +207,7 @@ git config --global user.email "내메일@example.com"</code></pre>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="skills.js?v=20261102d"></script>
-<script src="setup.js?v=20261102d"></script>
+<script src="skills.js?v=20261102e"></script>
+<script src="setup.js?v=20261102e"></script>
 </body>
 </html>
