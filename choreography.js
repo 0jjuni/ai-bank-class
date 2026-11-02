@@ -29,7 +29,11 @@ function choreograph(s,i,p){
   s.querySelectorAll('.beat-dots i').forEach((e,j)=>e.classList.toggle('on',j===k));
  }
  if(i===3){const a=clamp(p);paint(s.querySelector('.prompt-slip'),{x:-a*60,opacity:1-a*.7});paint(s.querySelector('.deck-stack'),{x:-a*230,scale:1+a*.15});s.querySelectorAll('.mini-slide.back,.mini-slide.mid').forEach((e,j)=>{e.style.translate=`${a*(j?100:-100)}px ${a*(j?65:-45)}px`})}
- if(i===6){s.querySelectorAll('.work-destination').forEach(e=>paint(e,{x:(1-p)*80,opacity:clamp(p)}));s.querySelectorAll('.work-arrow').forEach(e=>paint(e,{x:(1-p)*-60,opacity:clamp(p)}));paint(s.querySelector('.agent-workflow'),{y:(1-p)*50,opacity:clamp(p)})}
+ if(i===6){
+  const example=clamp(p*2),skill=clamp(p*2-1);
+  paint(s.querySelector('.work-destination'),{x:reduced?0:(1-example)*50,opacity:example});
+  paint(s.querySelector('.agent-workflow'),{y:reduced?0:(1-skill)*24,opacity:skill});
+ }
  if(i===7){paint(s.querySelector('.skill-folder'),{x:(1-p)*360,scale:1+(1-p)*.05});paint(s.querySelector('.skill-how'),{x:(1-p)*80,opacity:clamp(p)});}
 
  if(i===10)s.classList.toggle('auto-prompt',!reduced);
