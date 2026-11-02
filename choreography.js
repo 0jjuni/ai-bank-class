@@ -1,6 +1,6 @@
 // A scene owns several scroll stops. Intermediate stops change its contents,
 // rather than navigating straight past the demonstration.
-const beatPresets=[0,0,2,1,3,0,1,1,0,0,3,0,1,1,2,1,1,1,2,1];
+const beatPresets=[0,0,2,1,3,0,1,1,0,0,0,0,1,1,2,1,1,1,2,1];
 const beatCounts=[...document.querySelectorAll('.slide')].map(s=>s.dataset.motion==='overview'?0:(beatPresets[+s.dataset.motion]||0));
 const starts=[];let totalStops=0;beatCounts.forEach(n=>{starts.push(totalStops);totalStops+=n+1});totalStops--;
 const mix=(a,b,t)=>a+(b-a)*t;
@@ -32,7 +32,7 @@ function choreograph(s,i,p){
  if(i===6){s.querySelectorAll('.work-destination').forEach(e=>paint(e,{x:(1-p)*80,opacity:clamp(p)}));s.querySelectorAll('.work-arrow').forEach(e=>paint(e,{x:(1-p)*-60,opacity:clamp(p)}));paint(s.querySelector('.agent-workflow'),{y:(1-p)*50,opacity:clamp(p)})}
  if(i===7){paint(s.querySelector('.skill-folder'),{x:(1-p)*360,scale:1+(1-p)*.05});paint(s.querySelector('.skill-how'),{x:(1-p)*80,opacity:clamp(p)});}
 
- if(i===10)sequence(s,'.prompt-paragraph',p,3);
+ if(i===10)s.classList.toggle('auto-prompt',!reduced);
  if(i===12)sequence(s,'.design-request > *',p);
  if(i===13)sequence(s,'.revision-pair figure',p);
  if(i===14)sequence(s,'.ax-question-row',p,2);
