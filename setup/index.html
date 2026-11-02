@@ -8,7 +8,7 @@
 <meta name="description" content="Codex나 Claude를 설치하고 수업에서 소개한 스킬을 추가하는 방법입니다.">
 <link rel="preload" href="../assets/SUIT-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="setup.css?v=20261102o">
+<link rel="stylesheet" href="setup.css?v=20261102p">
 </head>
 <body>
 <header class="topbar">
@@ -17,6 +17,7 @@
     <nav aria-label="페이지 안 이동">
       <a href="#pick">앱 설치</a>
       <a href="#skills">스킬 설치</a>
+      <a href="#voice">음성 만들기</a>
     </nav>
   </div>
 </header>
@@ -223,38 +224,41 @@ https://github.com/...</code></pre>
     </div>
   </section>
 
-  <section id="extra" class="extra wrap" aria-labelledby="extra-title">
-    <h2 id="extra-title" class="section-title">필요할 때만 <span class="off-tag">오늘은 안 씀</span></h2>
-    <p class="section-lead">수업에서 스킬을 설치하고 쓰는 데는 없어도 됩니다.</p>
-
-    <div class="extra-list is-off">
-      <article class="extra-item">
-        <img src="https://cdn.simpleicons.org/github/1d4438" alt="" width="28" height="28">
-        <div>
-          <h3>GitHub 계정</h3>
-          <p>공개된 스킬은 로그인 없이 받을 수 있습니다. 내가 만든 파일이나 페이지를 GitHub에 올려 두고 싶을 때 만드세요.</p>
-          <a class="btn btn-ghost" href="https://github.com/signup" target="_blank" rel="noopener">GitHub 가입<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-        </div>
-      </article>
-      <article class="extra-item">
-        <img src="https://cdn.simpleicons.org/git/1d4438" alt="" width="28" height="28">
-        <div>
-          <h3>Git</h3>
-          <p>파일이 바뀐 기록을 남기는 프로그램입니다. 앱이 Git을 설치하라고 안내하거나 작업 기록을 남기고 싶을 때 설치합니다. 설치 화면의 선택지는 기본값 그대로 두면 됩니다.</p>
-          <a class="btn btn-ghost" href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">Git for Windows 받기<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-          <details class="more">
-            <summary>설치 후 이름 등록하기</summary>
-            <p>PowerShell을 열고 한 줄씩 붙여 넣습니다. 따옴표 안은 내 이름과 메일로 바꿉니다.</p>
-            <div class="code">
-              <pre><code>git --version
-git config --global user.name "내 이름"
-git config --global user.email "내메일@example.com"</code></pre>
-              <button class="copy" type="button" data-copy-prev>복사</button>
-            </div>
-          </details>
-        </div>
-      </article>
+  <section id="voice" class="voice wrap" aria-labelledby="voice-title">
+    <div class="voice-intro">
+      <img src="https://cdn.simpleicons.org/elevenlabs/1d4438" alt="" width="36" height="36">
+      <h2 id="voice-title" class="section-title">ElevenLabs로 대본 읽히기</h2>
+      <p>글을 넣으면 사람 목소리로 읽어 주는 AI 음성 서비스입니다. 수업에서 본 커버드콜 설명 영상의 목소리도 ElevenLabs로 만들었습니다. 스킬이 아니라 웹사이트라서 따로 설치할 것은 없습니다.</p>
+      <a class="btn btn-primary" href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs 열기<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+      <ul class="voice-notes">
+        <li>무료 요금제는 한 달에 10,000크레딧을 줍니다. 한 글자에 1크레딧이라 대략 1만 자를 읽힐 수 있습니다.</li>
+        <li>무료 요금제에는 상업용 라이선스가 없습니다. 고객에게 나가는 자료에 쓰려면 유료 요금제가 필요합니다. 회사 규정도 먼저 확인하세요.</li>
+        <li>같은 설정이어도 만들 때마다 조금씩 다르게 읽습니다. 몇 번 만들어 보고 마음에 드는 것을 고르세요.</li>
+      </ul>
     </div>
+    <ol class="voice-steps">
+      <li>
+        <h3>가입하고 Text to Speech 열기</h3>
+        <p>elevenlabs.io에서 가입하고 로그인한 다음, 왼쪽 메뉴에서 <strong>Text to Speech</strong>를 누릅니다.</p>
+      </li>
+      <li>
+        <h3>대본 붙여 넣기</h3>
+        <p>입력창에 대본을 붙여 넣습니다. 숫자와 기호는 "3%"보다 "3퍼센트"처럼 풀어 쓰면 덜 틀리게 읽습니다.</p>
+      </li>
+      <li>
+        <h3>목소리와 모델 고르기</h3>
+        <p>왼쪽 아래에서 목소리를 고릅니다. 모델은 한국어를 지원하는 다국어 모델로 고르세요. 영어 전용 모델은 한국어를 어색하게 읽습니다.</p>
+      </li>
+      <li>
+        <h3>만들고 내려받기</h3>
+        <p><strong>Generate</strong>를 누르고 들어 본 뒤, 오른쪽 아래 내려받기 버튼으로 MP3 파일을 받습니다.</p>
+      </li>
+      <li>
+        <h3>영상에 붙이기</h3>
+        <p>받은 MP3를 작업 폴더에 넣고 Codex나 Claude에게 이렇게 말하면 HyperFrames 영상에 붙일 수 있습니다.</p>
+        <div class="code code-request"><pre><code>이 폴더의 음성 파일 길이에 맞춰 장면 시간을 맞추고, 영상에 음성을 넣어줘.</code></pre></div>
+      </li>
+    </ol>
   </section>
 </main>
 
@@ -264,7 +268,7 @@ git config --global user.email "내메일@example.com"</code></pre>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="skills.js?v=20261102o"></script>
-<script src="setup.js?v=20261102o"></script>
+<script src="skills.js?v=20261102p"></script>
+<script src="setup.js?v=20261102p"></script>
 </body>
 </html>

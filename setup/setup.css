@@ -144,7 +144,6 @@ body[data-app] .app{animation:rise .4s ease both}
 /* 오늘 수업에서 쓰지 않는 방법은 어둡게 눌러 둔다 */
 .method-off{background:#e2e3dc;border-color:transparent;filter:grayscale(1);opacity:.55}
 .more-off{background:#e2e3dc;border-color:transparent;filter:grayscale(1);opacity:.55}
-.extra-list.is-off .extra-item{background:#e2e3dc;border-color:transparent;filter:grayscale(1);opacity:.55}
 .section-title .off-tag{font-size:14px;vertical-align:.35em}
 .off-tag{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--text);color:var(--bg);font-size:12px;font-weight:700;vertical-align:middle}
 .paths{margin:16px 0 0}
@@ -183,14 +182,20 @@ body[data-app] .app{animation:rise .4s ease both}
 .caution{display:flex;gap:10px;align-items:flex-start;margin:40px 0 0;color:var(--muted);font-size:15px;max-width:48em}
 .caution i{font-size:20px;flex:none;margin-top:1px}
 
-/* 필요할 때만 */
-.extra{padding-top:88px;padding-bottom:96px}
-.extra-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
-.extra-item{display:grid;grid-template-columns:28px 1fr;gap:16px;padding:24px;border:1px solid var(--line);border-radius:var(--radius)}
-.extra-item h3{font-size:20px;margin:0 0 6px}
-.extra-item p{margin:0 0 16px;color:var(--muted)}
-.extra-item .more{margin-top:16px}
-@media (max-width:760px){.extra-list{grid-template-columns:1fr}}
+/* ElevenLabs */
+.voice{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:start;padding-top:88px;padding-bottom:96px}
+.voice-intro img{margin-bottom:16px}
+.voice-intro p{color:var(--muted);margin:0 0 24px;max-width:34em}
+.voice-notes{margin:28px 0 0;padding:20px 20px 20px 38px;border-radius:var(--radius);background:var(--surface-2);font-size:15px}
+.voice-notes li+li{margin-top:8px}
+.voice-steps{list-style:none;margin:0;padding:0;counter-reset:voice}
+.voice-steps > li{position:relative;padding:0 0 26px 48px;counter-increment:voice}
+.voice-steps > li::before{content:counter(voice);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:14px;font-weight:800;display:grid;place-items:center}
+.voice-steps > li:not(:last-child)::after{content:"";position:absolute;left:14px;top:36px;bottom:6px;width:2px;background:var(--line)}
+.voice-steps h3{font-size:19px;margin:0 0 6px;line-height:30px}
+.voice-steps p{margin:0 0 8px}
+.voice-steps .code{margin-top:12px}
+@media (max-width:860px){.voice{grid-template-columns:1fr;gap:40px}}
 
 .footer{padding:40px 24px 56px;font-size:15px}
 .footer a{color:var(--muted);text-underline-offset:3px}
