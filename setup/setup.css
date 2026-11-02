@@ -115,6 +115,7 @@ code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding
 body[data-app="codex"] [data-app-only="claude"],
 body[data-app="claude"] [data-app-only="codex"]{display:none}
 body[data-app] .pick-hint{display:none}
+body[data-app] .app{animation:rise .4s ease both}
 
 /* 코드 블록 */
 .code{position:relative;background:var(--code-bg);color:var(--code-text);border-radius:var(--radius);margin:16px 0}

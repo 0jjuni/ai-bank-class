@@ -73,6 +73,37 @@
   });
   renderCount();
 
+  // 페이지 안 이동. Windows에서 애니메이션 효과를 꺼 두면 CSS smooth 스크롤이 꺼져
+  // 화면이 뚝 끊기듯 넘어가므로, 짧은 감속 스크롤을 직접 돌린다.
+  var TOPBAR_GAP = 80;
+  var glideFrame = null;
+  function glideTo(el) {
+    var start = window.pageYOffset;
+    var end = Math.max(0, el.getBoundingClientRect().top + start - TOPBAR_GAP);
+    var dist = end - start;
+    if (Math.abs(dist) < 2) return;
+    var duration = Math.min(700, 320 + Math.abs(dist) * 0.25);
+    var t0 = null;
+    if (glideFrame) cancelAnimationFrame(glideFrame);
+    function step(now) {
+      if (t0 === null) t0 = now;
+      var p = Math.min(1, (now - t0) / duration);
+      var eased = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo({ top: start + dist * eased, behavior: "instant" });
+      glideFrame = p < 1 ? requestAnimationFrame(step) : null;
+    }
+    glideFrame = requestAnimationFrame(step);
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a || a.getAttribute("href").length < 2) return;
+    var target = document.getElementById(a.getAttribute("href").slice(1));
+    if (!target) return;
+    e.preventDefault();
+    glideTo(target);
+    history.replaceState(null, "", a.getAttribute("href"));
+  });
+
   // 설치할 앱 고르기. 같은 버튼을 다시 누르면 선택을 풀고 둘 다 보여 준다.
   var choiceBtns = Array.prototype.slice.call(document.querySelectorAll("[data-choose]"));
   function applyApp(app) {
@@ -88,7 +119,7 @@
       saved.app = app;
       save();
       applyApp(app);
-      if (app) document.getElementById("install").scrollIntoView({ block: "start" });
+      if (app) glideTo(document.getElementById("install"));
     });
   });
   applyApp(saved.app || "");
