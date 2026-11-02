@@ -32,7 +32,7 @@ function cancelScroll(){cancelAnimationFrame(scrollAnimation);scrollAnimation=0;
 function move(stop,smooth=true){
  cancelScroll();const target=Math.max(0,Math.min(totalStops,stop))*unit,start=scrollY,distance=target-start;
  if(!smooth||reduced||Math.abs(distance)<1){scrollTo({top:target,behavior:'instant'});render();return}
- scrollDestination=target;const duration=Math.min(1100,600+Math.abs(distance)/unit*120),begin=performance.now();
+ scrollDestination=target;const duration=Math.min(550,300+Math.abs(distance)/unit*60),begin=performance.now();
  function frame(now){const t=Math.min(1,(now-begin)/duration),e=t*t*(3-2*t);scrollTo({top:start+distance*e,behavior:'instant'});render();if(t<1)scrollAnimation=requestAnimationFrame(frame);else{scrollAnimation=0;scrollDestination=null;render()}}
  scrollAnimation=requestAnimationFrame(frame);render();
 }
