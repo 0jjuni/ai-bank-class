@@ -106,6 +106,7 @@ code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding
 .app-steps li::before{content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:14px;font-weight:800;display:grid;place-items:center}
 .app-steps h4{font-size:19px;margin:0 0 6px;line-height:30px}
 .app-steps p{margin:0 0 12px}
+.app-steps .sub-note{color:var(--muted);font-size:15px}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 0}
 .done-when{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:15px}
 .done-when i{color:var(--accent);font-size:20px;flex:none;margin-top:1px}
