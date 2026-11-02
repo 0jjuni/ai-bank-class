@@ -81,3 +81,8 @@ body{word-break:keep-all;overflow-wrap:break-word}
 .gmail-delivery .gm-more p{font-size:13px;font-weight:800;letter-spacing:.06em;color:#5f6368;margin-bottom:8px!important}
 .gmail-delivery .gm-more ul{margin:0;padding-left:18px;font-size:15px;line-height:1.75}
 .gmail-delivery .gm-foot{margin-top:22px!important;text-align:center;font-size:13px;color:#80868b;line-height:1.6}
+
+/* 공유용 링크라 발표 메모는 모든 화면에서 숨김 (스크립트가 id로 찾으므로 요소는 남겨 둠) */
+#note-toggle,#notes{display:none!important}
+/* 휴대폰에서는 보는 데 필요한 버튼만: 이전, 다음, 장면 선택, 전체화면 */
+@media (max-width:700px){#replay-scene,#motion-toggle,#print,#source-toggle,#all{display:none!important}}
