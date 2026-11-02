@@ -173,7 +173,7 @@ body[data-app] .app{animation:rise .4s ease both}
 .skill .repo{font-family:var(--mono);font-size:13.5px;color:var(--muted);text-underline-offset:3px;overflow-wrap:anywhere;margin-bottom:16px}
 .skill .code{margin:0 0 4px}
 .skill .code pre{font-size:13.5px}
-.skill .code-request pre{padding:16px 18px;white-space:pre-wrap;overflow-wrap:anywhere}
+.code-request pre{padding:16px 18px;white-space:pre-wrap;overflow-wrap:anywhere}
 .code-request a{color:inherit;text-underline-offset:3px}
 .skill .cmd-label{font-size:14px;font-weight:700;margin:12px 0 0}
 .skill-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:16px}
