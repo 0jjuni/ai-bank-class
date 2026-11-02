@@ -191,3 +191,31 @@ body[data-app] .pick-hint{display:none}
 
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,16px);background:var(--text);color:var(--bg);padding:12px 18px;border-radius:var(--radius);font-weight:600;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}
 .toast.is-on{opacity:1;transform:translate(-50%,0)}
+
+/* 스킬 소개 팝업 */
+.intro{width:min(640px,calc(100vw - 32px));max-height:min(86vh,820px);padding:0;border:0;border-radius:var(--radius);background:var(--bg);color:var(--text);box-shadow:0 30px 80px -20px rgb(20 63 53 / .45)}
+.intro[open]{display:flex;flex-direction:column}
+.intro::backdrop{background:rgb(20 40 34 / .45)}
+@media (prefers-reduced-motion:no-preference){.intro[open]{animation:pop .22s ease both}}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.intro-inner{display:flex;flex-direction:column;min-height:0;flex:1}
+.intro-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:24px 24px 16px;border-bottom:1px solid var(--line)}
+.intro-head h3{font-size:26px;margin:6px 0 0;letter-spacing:-.01em}
+.intro-close{width:44px;height:44px;flex:none;display:grid;place-items:center;border:0;border-radius:var(--radius);background:var(--surface-2);color:var(--text);font-size:22px;cursor:pointer}
+.intro-close:hover{background:var(--accent-soft)}
+.intro-scroll{overflow-y:auto;padding:8px 24px 24px;flex:1;min-height:0}
+.intro-scroll h4{font-size:16px;margin:20px 0 8px;color:var(--accent)}
+.intro-scroll p{margin:0}
+.intro-scroll ul{margin:0;padding-left:20px}
+.intro-scroll li+li{margin-top:4px}
+.intro-scroll .code{margin:0 0 10px;background:var(--surface-2);color:var(--text)}
+.intro-scroll .code code{font-family:inherit}
+.intro-scroll .copy{border-color:var(--line);background:var(--bg);color:var(--text)}
+.intro-scroll .copy:hover{background:var(--surface)}
+.intro-scroll .code pre{font-family:SUIT,sans-serif;font-size:15px;white-space:pre-wrap;word-break:keep-all}
+.intro-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 24px;border-top:1px solid var(--line);background:var(--surface)}
+.intro-foot .repo{font-size:14px;color:var(--muted);text-underline-offset:3px}
+@media (max-width:640px){
+  .intro-head,.intro-scroll,.intro-foot{padding-left:16px;padding-right:16px}
+  .intro-scroll .code pre{padding:52px 16px 16px}
+}

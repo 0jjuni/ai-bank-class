@@ -125,7 +125,7 @@
       cmds +
       '<div class="skill-actions">' +
         '<button class="btn btn-primary" type="button" data-copy="' + esc(promptFor(skill)) + '">설치 요청 복사</button>' +
-        (skill.site ? '<a class="btn btn-ghost" href="' + esc(skill.site) + '" target="_blank" rel="noopener">소개 페이지</a>' : '') +
+        (skill.intro ? '<button class="btn btn-ghost" type="button" data-intro="' + esc(skill.id) + '">스킬 소개</button>' : '') +
       '</div>' +
     '</li>';
   }
@@ -152,4 +152,57 @@
     render();
   });
   render();
+
+  // 스킬 소개 팝업
+  var introEl = document.getElementById("intro");
+  var introBody = document.getElementById("intro-body");
+  var lastOpener = null;
+
+  function list(items) {
+    return '<ul>' + items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>';
+  }
+
+  function openIntro(skill, opener) {
+    var it = skill.intro;
+    var prompts = it.prompts.map(function (p) {
+      return '<div class="code code-prompt"><pre><code>' + esc(p) + '</code></pre>' +
+        '<button class="copy" type="button" data-copy-prev>복사</button></div>';
+    }).join("");
+    introBody.innerHTML =
+      '<div class="intro-head">' +
+        '<div><span class="tag">' + esc(skill.use) + '</span><h3 id="intro-title">' + esc(skill.name) + '</h3></div>' +
+        '<button class="intro-close" type="button" data-close aria-label="닫기"><i class="ph ph-x" aria-hidden="true"></i></button>' +
+      '</div>' +
+      '<div class="intro-scroll">' +
+        '<h4>어떤 스킬인가요</h4><p>' + esc(it.what) + '</p>' +
+        '<h4>이럴 때 씁니다</h4>' + list(it.when) +
+        '<h4>이렇게 요청해 보세요</h4>' + prompts +
+        '<h4>알아 둘 것</h4>' + list(it.notes) +
+      '</div>' +
+      '<div class="intro-foot">' +
+        '<button class="btn btn-primary" type="button" data-copy="' + esc(promptFor(skill)) + '">설치 요청 복사</button>' +
+        '<a class="repo" href="' + esc(skill.repo) + '" target="_blank" rel="noopener">GitHub에서 원문 보기</a>' +
+      '</div>';
+    lastOpener = opener;
+    if (introEl.showModal) introEl.showModal(); else introEl.setAttribute("open", "");
+    introBody.querySelector(".intro-scroll").scrollTop = 0;
+  }
+
+  function closeIntro() {
+    if (introEl.close) introEl.close(); else introEl.removeAttribute("open");
+  }
+
+  listEl.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-intro]");
+    if (!b) return;
+    var skill = skills.filter(function (s) { return s.id === b.dataset.intro; })[0];
+    if (skill) openIntro(skill, b);
+  });
+  introEl.addEventListener("click", function (e) {
+    // 팝업 바깥(배경)을 누르거나 닫기 버튼을 누르면 닫는다
+    if (e.target === introEl || e.target.closest("[data-close]")) closeIntro();
+  });
+  introEl.addEventListener("close", function () {
+    if (lastOpener) lastOpener.focus();
+  });
 })();
